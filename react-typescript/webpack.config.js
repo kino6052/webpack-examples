@@ -4,17 +4,17 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        app: './src/index.ts'
+        app: './src/index.js'
     },
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/
-            }
-        ]
-    },
+    // module: {
+    //     rules: [
+    //         {
+    //             test: /\.tsx?$/,
+    //             use: 'ts-loader',
+    //             exclude: /node_modules/
+    //         }
+    //     ]
+    // },
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
     },
@@ -24,8 +24,13 @@ module.exports = {
         //     title: 'Production'
         // })
     ],
+    optimization: {
+      splitChunks: {
+        chunks: 'all'
+      }
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     }
 };
